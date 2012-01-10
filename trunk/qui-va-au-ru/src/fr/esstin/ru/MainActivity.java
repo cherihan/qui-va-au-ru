@@ -3,8 +3,8 @@ package fr.esstin.ru;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -76,8 +76,9 @@ public class MainActivity extends Activity {
 	public void cb_carpooling_click(View v) {
 
 	}
-	
+
 	public void ll_infos_click(View v) {
-		
+		Intent intent = new Intent(MainActivity.this, Profile.class);
+		startActivity(intent);
 	}
 }
