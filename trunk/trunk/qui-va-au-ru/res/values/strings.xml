@@ -7,5 +7,6 @@
     <string name="going">Je vais au RU !</string>
     <string name="carpooling">Je covoiture</string>
     <string name="summary"/>
+    <string name="preferences_title">Gestion du profil</string>
 
 </resources>
