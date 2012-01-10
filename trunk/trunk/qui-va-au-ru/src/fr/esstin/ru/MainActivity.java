@@ -12,15 +12,15 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 public class MainActivity extends Activity {
-	/** Called when the activity is first created. */
 	private ListView lv_carpoolers, lv_going;
 	private CheckBox cb_carpooling, cb_going;
+	private static final int ACTIVITY_NUMBER = 1;
 
+	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
 		lv_carpoolers = (ListView) findViewById(R.id.lv_carpoolers);
 		lv_going = (ListView) findViewById(R.id.lv_going);
 		cb_carpooling = (CheckBox) findViewById(R.id.cb_carpooling);
@@ -29,6 +29,13 @@ public class MainActivity extends Activity {
 		cb_carpooling.setEnabled(false);
 		fillCarpoolers();
 		fillGoing();
+	}
+
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		if (hasFocus) {
+			
+		}
 	}
 
 	private void fillCarpoolers() {
@@ -78,7 +85,9 @@ public class MainActivity extends Activity {
 	}
 
 	public void ll_infos_click(View v) {
+		Bundle bundle = new Bundle();
 		Intent intent = new Intent(MainActivity.this, Profile.class);
-		startActivity(intent);
+		intent.putExtras(bundle);
+		startActivityForResult(intent, ACTIVITY_NUMBER);
 	}
 }
