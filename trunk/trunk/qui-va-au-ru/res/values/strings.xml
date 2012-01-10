@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, MainActivity!</string>
+    <string name="app_name">Qui va au RU ?</string>
+    <string name="empty">void</string>
+    <string name="going">Je vais au RU !</string>
+    <string name="carpooling">Je covoiture</string>
+    <string name="summary"/>
+
+</resources>
