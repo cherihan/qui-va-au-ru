@@ -6,7 +6,23 @@
     <string name="empty">void</string>
     <string name="going">Je vais au RU !</string>
     <string name="carpooling">Je covoiture</string>
-    <string name="summary"/>
+    <string name="summary" />
     <string name="preferences_title">Gestion du profil</string>
+    <string name="preferences_profile">Nom d\'utilisateur</string>
+    <string name="preferences_car">Voiture</string>
+    <string name="user_name">Nom : </string>
+    <string name="car">Voiture</string>
+    <string name="without_car">Je n\'ai pas de voiture</string>
+    <string name="with_car">J\'ai une voiture</string>
+
+    <string-array name="seats_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
 
 </resources>
