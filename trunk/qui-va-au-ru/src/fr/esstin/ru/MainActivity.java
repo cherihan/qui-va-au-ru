@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		if (hasFocus) {
-			
+			//if(Profile.)
 		}
 	}
 
