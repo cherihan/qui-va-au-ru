@@ -4,27 +4,41 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
+	private TextView tv_nickname, tv_seats, tv_carpools;
 	private ListView lv_carpoolers, lv_going;
 	private CheckBox cb_carpooling, cb_going;
-	private static final int ACTIVITY_NUMBER = 1;
+	private SharedPreferences pref;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+
+		tv_nickname = (TextView) findViewById(R.id.tv_nickname);
+		tv_seats = (TextView) findViewById(R.id.tv_seats);
+		tv_carpools = (TextView) findViewById(R.id.tv_carpools);
 		lv_carpoolers = (ListView) findViewById(R.id.lv_carpoolers);
 		lv_going = (ListView) findViewById(R.id.lv_going);
 		cb_carpooling = (CheckBox) findViewById(R.id.cb_carpooling);
 		cb_going = (CheckBox) findViewById(R.id.cb_going);
+
+		pref = getSharedPreferences("fr.esstin.ru_preferences",
+				Context.MODE_PRIVATE);
+		if (pref.getBoolean("firstStart", false)) {
+			pref.edit().putBoolean("firstStart", true);
+		}
 
 		cb_carpooling.setEnabled(false);
 		fillCarpoolers();
@@ -33,8 +47,20 @@ public class MainActivity extends Activity {
 
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
-		if (hasFocus) {
-			//if(Profile.)
+		pref = this.getSharedPreferences("fr.esstin.ru_preferences",
+				Context.MODE_PRIVATE);
+		if (pref != null) {
+			tv_nickname.setText(pref.getString("user_name", null));
+			if (pref.getBoolean("car", false)) {
+				tv_seats.setText("Voiture : "
+						+ pref.getString("pref_list_seats", null));
+				findViewById(R.id.cb_carpooling).setVisibility(View.VISIBLE);
+			} else {
+				tv_seats.setText("Pas de voiture.");
+				findViewById(R.id.cb_carpooling).setVisibility(View.INVISIBLE);
+			}
+		} else {
+
 		}
 	}
 
@@ -88,6 +114,6 @@ public class MainActivity extends Activity {
 		Bundle bundle = new Bundle();
 		Intent intent = new Intent(MainActivity.this, Profile.class);
 		intent.putExtras(bundle);
-		startActivityForResult(intent, ACTIVITY_NUMBER);
+		startActivityForResult(intent, 0);
 	}
 }
