@@ -45,8 +45,16 @@ public class MainActivity extends Activity {
 		cb_carpooling.setEnabled(false);
 		fillCarpoolers();
 		fillGoing();
-		SoapObject so;
 		
+	}
+
+	private void connectWS() {
+		String NAMESPACE = "http://vladozver.org/";
+        String METHOD_NAME = "GetSumOfTwoInts";
+        String SOAP_ACTION = "http://vladozver.org/GetSumOfTwoInts";
+        String URL = "http://192.168.1.3/VipEvents/Services/BasicServices.asmx";
+        SoapObject so = new SoapObject(NAMESPACE, METHOD_NAME);
+        
 	}
 
 	@Override
