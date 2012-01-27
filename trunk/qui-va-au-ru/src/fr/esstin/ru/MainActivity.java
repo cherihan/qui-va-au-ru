@@ -3,6 +3,8 @@ package fr.esstin.ru;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.ksoap2.serialization.SoapObject;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -43,6 +45,8 @@ public class MainActivity extends Activity {
 		cb_carpooling.setEnabled(false);
 		fillCarpoolers();
 		fillGoing();
+		SoapObject so;
+		
 	}
 
 	@Override
