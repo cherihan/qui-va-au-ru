@@ -20,6 +20,7 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import fr.esstin.ru.ws.marshal.MarshalDouble;
 
 public class MainActivity extends Activity {
 	private TextView tv_nickname, tv_seats, tv_carpools;
@@ -50,30 +51,22 @@ public class MainActivity extends Activity {
 		cb_carpooling.setEnabled(false);
 		fillCarpoolers();
 		fillGoing();
-
-		try {
-			connectWS();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (XmlPullParserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	private void connectWS() throws IOException, XmlPullParserException {
 		String NAMESPACE = "http://calculator/";
 		String METHOD_NAME = "add";
 		String SOAP_ACTION = "http://calculator/Calculator/add";
-		String URL = "http://127.0.0.1/Calc/Calculator?WSDL";
-
-		SoapObject so = new SoapObject(NAMESPACE, METHOD_NAME);
-		so.addProperty("arg0", new Double(1.4));
-		so.addProperty("arg1", new Double(2.6));
+		String URL = "http://192.168.1.89/Calc/Calculator?WSDL";
 
 		SoapSerializationEnvelope env = new SoapSerializationEnvelope(
 				SoapEnvelope.VER11);
+		new MarshalDouble().register(env);
+
+		SoapObject so = new SoapObject(NAMESPACE, METHOD_NAME);
+		so.addProperty("arg0", new Double(1));
+		so.addProperty("arg1", new Double(2));
+
 		env.setOutputSoapObject(so);
 		HttpTransportSE httpTransport = new HttpTransportSE(URL);
 		httpTransport.call(SOAP_ACTION, env);
@@ -145,6 +138,18 @@ public class MainActivity extends Activity {
 
 	public void cb_carpooling_click(View v) {
 
+	}
+
+	public void itemOfCarpoolers_click(View v) {
+		try {
+			connectWS();
+		} catch (IOException e) {
+			tv_nickname.setText(e.toString());
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			tv_nickname.setText(e.toString());
+			e.printStackTrace();
+		}
 	}
 
 	public void ll_infos_click(View v) {

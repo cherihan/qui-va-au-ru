@@ -1,4 +1,4 @@
-package fr.esstin.ru;
+package fr.esstin.ru.ws;
 
 public class WSAccess {
 
