@@ -1,9 +1,14 @@
 package fr.esstin.ru;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
+import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
 import android.content.Context;
@@ -45,16 +50,36 @@ public class MainActivity extends Activity {
 		cb_carpooling.setEnabled(false);
 		fillCarpoolers();
 		fillGoing();
-		
+
+		try {
+			connectWS();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	private void connectWS() {
-		String NAMESPACE = "http://vladozver.org/";
-        String METHOD_NAME = "GetSumOfTwoInts";
-        String SOAP_ACTION = "http://vladozver.org/GetSumOfTwoInts";
-        String URL = "http://192.168.1.3/VipEvents/Services/BasicServices.asmx";
-        SoapObject so = new SoapObject(NAMESPACE, METHOD_NAME);
-        
+	private void connectWS() throws IOException, XmlPullParserException {
+		String NAMESPACE = "http://calculator/";
+		String METHOD_NAME = "add";
+		String SOAP_ACTION = "http://calculator/Calculator/add";
+		String URL = "http://127.0.0.1/Calc/Calculator?WSDL";
+
+		SoapObject so = new SoapObject(NAMESPACE, METHOD_NAME);
+		so.addProperty("arg0", new Double(1.4));
+		so.addProperty("arg1", new Double(2.6));
+
+		SoapSerializationEnvelope env = new SoapSerializationEnvelope(
+				SoapEnvelope.VER11);
+		env.setOutputSoapObject(so);
+		HttpTransportSE httpTransport = new HttpTransportSE(URL);
+		httpTransport.call(SOAP_ACTION, env);
+		SoapObject result = (SoapObject) env.getResponse();
+
+		tv_nickname.setText(result.toString());
 	}
 
 	@Override
