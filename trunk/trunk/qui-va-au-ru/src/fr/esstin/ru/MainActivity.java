@@ -57,12 +57,13 @@ public class MainActivity extends Activity {
 		String NAMESPACE = "http://calculator/";
 		String METHOD_NAME = "add";
 		String SOAP_ACTION = "http://calculator/Calculator/add";
-		String URL = "http://192.168.29.131/Calc/Calculator?WSDL";
+		String URL = "http://192.168.29.131:8080/Calc/Calculator?WSDL";
 
 		SoapSerializationEnvelope env = new SoapSerializationEnvelope(
 				SoapEnvelope.VER11);
 		new MarshalDouble().register(env);
 
+		
 		SoapObject so = new SoapObject(NAMESPACE, METHOD_NAME);
 		so.addProperty("arg0", new Double(1));
 		so.addProperty("arg1", new Double(2));
