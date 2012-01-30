@@ -5,13 +5,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class CreerEtSupprimmerLesFichiersTextesServantDeProfilesUtilisateurs {
 
 	public static void creer(String nom) {
-		File g = new File(System.getProperty("user.dir" )+File.separatorChar+"profiles"+);
+		File g = new File(System.getProperty("user.dir" )+File.separatorChar+"profiles"+File.separatorChar);
 		if (g.exists()){g.delete();};
-		g.createNewFile();
+		//g.createNewFile();
 		String format = "dd/MM/yy H:mm:ss"; 
 		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
 		java.util.Date date = new java.util.Date(); 
@@ -27,12 +28,13 @@ public class CreerEtSupprimmerLesFichiersTextesServantDeProfilesUtilisateurs {
 		ecrivain.println("<Document>");
 		ecrivain.println("<name>Locations au "+formater.format(date)+"</name>");
 		ecrivain.println("<description></description>");
+		ArrayList list = new ArrayList();
 		for (int i=0; i<list.size(); i++) {
 			ecrivain.println("<Placemark>");
 			ecrivain.println("<Style>");
 			ecrivain.println("<IconStyle>");
 			ecrivain.println("<Icon>");
-			if(list.get(i).getType().equals("appartement")) {
+			/*if(list.get(i).getType().equals("appartement")) {
 				ecrivain.println("<href>http://maps.google.com/mapfiles/ms/icons/homegardenbusiness.png</href>");
 			} else if (list.get(i).getType().equals("maison")) {
 				ecrivain.println("<href>http://maps.google.com/mapfiles/ms/icons/rangerstation.png</href>");
@@ -40,13 +42,6 @@ public class CreerEtSupprimmerLesFichiersTextesServantDeProfilesUtilisateurs {
 			ecrivain.println("</Icon>");
 			ecrivain.println("</IconStyle>");
 			ecrivain.println("</Style>");
-			//ecrivain.println("<name><![CDATA[");
-			//ecrivain.println("<div id=\"ObservationDetail\">");		
-			//ecrivain.println("<span id=\"title\">"+o.getTitle()+"</span>");
-			//ecrivain.println("</div>");
-			//ecrivain.println(o.getTitle());
-			//ecrivain.println("]]>");
-			//ecrivain.println("</name>");
 			ecrivain.println("<description>");
 			ecrivain.println("<![CDATA[");
 			ecrivain.println("<div id=\"LocationDetail\">");
@@ -68,12 +63,13 @@ public class CreerEtSupprimmerLesFichiersTextesServantDeProfilesUtilisateurs {
 			ecrivain.println("<Point>");
 			ecrivain.println("<extrude>1</extrude>");
 			ecrivain.println("<altitudeMode>relativeToGround</altitudeMode>");
-			ecrivain.println("<coordinates>"+list.get(i).getLon()+","+list.get(i).getLat()+"</coordinates>");		// +","+this.getObservationsList().get(i).getLongitude()
-			ecrivain.println("</Point>");																			// change to location after talking to Vladimir, no single coordinates needed
+			ecrivain.println("<coordinates>"+list.get(i).getLon()+","+list.get(i).getLat()+"</coordinates>");
+			ecrivain.println("</Point>");																	
 			ecrivain.println("</Placemark>");
-		}
+		}*/
 		ecrivain.println("</Document>");
 		ecrivain.print("</kml>");
 		ecrivain.close();
 	}
+}
 }
