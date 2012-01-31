@@ -21,17 +21,17 @@ import android.util.Log;
 
 public class TestMysql {
 
-	public static void main(String[]args) {
+	public static void truc() {
 		String result = "";
 		//the year data to send
 		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("year","1980"));
 
 		//http post
-		System.out.println("pokemon");
+		Log.i("info","pokemon");
 		InputStream is = null;
 		try{
-			System.out.println("le");
+			Log.i("info","le");
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost("http://localhost/getAllPeopleBornAfter.php");
 			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
@@ -43,7 +43,7 @@ public class TestMysql {
 		}
 		//convert response to string
 		try{
-			System.out.println("film");
+			Log.i("info","film");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8);
 			StringBuilder sb = new StringBuilder();
 			String line = null;
