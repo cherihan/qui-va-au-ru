@@ -159,4 +159,8 @@ public class MainActivity extends Activity {
 		intent.putExtras(bundle);
 		startActivityForResult(intent, 0);
 	}
+	
+	public void itemOfGoing_click(View v) {
+		TestMysql.truc();
+	}
 }
