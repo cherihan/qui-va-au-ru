@@ -10,12 +10,13 @@ public class User {
 	private Integer capacity;
 	private Boolean ru;
 	private Boolean takeCar;
+	private Integer count;
 
 	public User() {
 	}
 
 	public User(String ln, String fn, String nn, Integer ph, Boolean c,
-			Integer cap) {
+			Integer cap, Integer co) {
 
 		lastName = ln;
 		firstName = fn;
@@ -25,7 +26,7 @@ public class User {
 		capacity = cap;
 		ru = false;
 		takeCar = false;
-
+		setCount(co);
 	}
 
 	public String getLastName() {
@@ -90,5 +91,13 @@ public class User {
 
 	public void setTakeCar(Boolean takeCar) {
 		this.takeCar = takeCar;
+	}
+
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 }
