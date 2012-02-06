@@ -31,9 +31,10 @@ public class WSAccess {
 		Log.i("bodyIn", env.bodyIn.toString());
 		SoapObject so = (SoapObject) env.bodyIn;
 		String[] users = new String[so.getPropertyCount()];
-		/*for (int i = 0; i < users.length; i++) {
-			users[i] = so.getProperty(i).toString();
-		}*/
+		/*
+		 * for (int i = 0; i < users.length; i++) { users[i] =
+		 * so.getProperty(i).toString(); }
+		 */
 		users[0] = env.bodyIn.toString();
 		return users;
 	}
@@ -46,7 +47,7 @@ public class WSAccess {
 
 		env = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 		request = new SoapObject(NAMESPACE, METHOD_NAME);
-		
+
 		User user = new User();
 		user.setCapacity(0);
 		user.setCar(false);
@@ -64,7 +65,7 @@ public class WSAccess {
 		pi.setType(User.class);
 		request.addProperty(pi);
 		env.setOutputSoapObject(request);
-		
+
 		HttpTransportSE httpTransport = new HttpTransportSE(URL);
 
 		try {
@@ -74,12 +75,9 @@ public class WSAccess {
 		}
 		Log.i("bodyIn", env.bodyIn.toString());
 		SoapObject so = (SoapObject) env.bodyIn;
-		String[] users = new String[so.getPropertyCount()];
-		/*for (int i = 0; i < users.length; i++) {
-			users[i] = so.getProperty(i).toString();
-		}*/
-		users[0] = env.bodyIn.toString();
+		Log.i("Résultat", (String) so.getProperty(0));
 	}
+
 	public static String[] GetBonjour() {
 		String MethodName = "GetAllCategories";
 		SoapObject response = InvokeMethod(URL, MethodName);
