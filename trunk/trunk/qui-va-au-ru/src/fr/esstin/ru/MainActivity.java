@@ -1,14 +1,7 @@
 package fr.esstin.ru;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
-import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
 import android.content.Context;
