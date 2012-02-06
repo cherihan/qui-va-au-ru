@@ -66,8 +66,10 @@ public class MainActivity extends Activity {
 		 * (java.lang.ClassCastException cce) {
 		 * tv_nickname.setText(cce.toString()); }
 		 */
-		String[] users = WSAccess.whosGoing();
-		tv_nickname.setText(users[0]);
+
+		WSAccess.createUser();
+		//String[] users = WSAccess.whosGoing();
+		//tv_nickname.setText(users[0]);
 	}
 
 	@Override
@@ -88,7 +90,7 @@ public class MainActivity extends Activity {
 
 		}
 	}
-
+	// tu es le meilleur !! you are the warrior !!!! ich lie biedie dich ! qiueras guerrerio ! :D dixit Sasa ;)
 	private void fillCarpoolers() {
 		ArrayList<HashMap<String, String>> al_carpoolers = new ArrayList<HashMap<String, String>>(
 				0);
@@ -145,7 +147,7 @@ public class MainActivity extends Activity {
 		intent.putExtras(bundle);
 		startActivityForResult(intent, 0);
 	}
-	
+
 	public void itemOfGoing_click(View v) {
 		TestMysql.truc();
 	}
