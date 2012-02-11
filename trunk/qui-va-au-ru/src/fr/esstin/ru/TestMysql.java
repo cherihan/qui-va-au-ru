@@ -31,11 +31,12 @@ public class TestMysql {
 		Log.i("info","pokemon");
 		InputStream is = null;
 		try{
-			Log.i("info","le");
 			HttpClient httpclient = new DefaultHttpClient();
-			HttpPost httppost = new HttpPost("http://localhost/getAllPeopleBornAfter.php");
+			HttpPost httppost = new HttpPost("http://192.168.0.6/getAllPeopleBornAfter.php");
 			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			Log.i("info","le");
 			HttpResponse response = httpclient.execute(httppost);
+			Log.i("info","film");
 			HttpEntity entity = response.getEntity();
 			/*InputStream*/ is = entity.getContent();
 		}catch(Exception e){
@@ -43,7 +44,6 @@ public class TestMysql {
 		}
 		//convert response to string
 		try{
-			Log.i("info","film");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8);
 			StringBuilder sb = new StringBuilder();
 			String line = null;
@@ -57,6 +57,8 @@ public class TestMysql {
 			Log.e("log_tag", "Error converting result "+e.toString());
 		}
 
+		Log.i("info",result);
+		
 		//parse json data
 		try{
 			JSONArray jArray = new JSONArray(result);
