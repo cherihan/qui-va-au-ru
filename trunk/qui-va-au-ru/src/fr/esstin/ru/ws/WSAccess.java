@@ -8,6 +8,7 @@ import org.ksoap2.transport.HttpTransportSE;
 
 import android.util.Log;
 
+@Deprecated
 public class WSAccess {
 	private static String NAMESPACE = "http://ru.esstin.fr/";
 	private static String URL = "http://192.168.29.184:8080/ServiceWebQuiVaAuRu/WebServiceQuiVa?WSDL";
@@ -133,4 +134,5 @@ public class WSAccess {
 		}
 		return users;
 	}
+
 }
